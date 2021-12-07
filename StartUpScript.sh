@@ -3,6 +3,7 @@
 printf "\n\n----------------- installing libraries -----------------\n\n"
 
 pip install kaggle
+pip install pandas
 
 printf "\n\n----------------- Setting up environment -----------------\n\n"
 
