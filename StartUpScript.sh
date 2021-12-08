@@ -29,14 +29,40 @@ done < "$input"
 
 printf "\n\n---------------- Getting Data from kaggle ----------------\n\n"
 
-kaggle datasets download -d camnugent/sandp500/all_stocks_5yr.csv
-mkdir ./Data
-unzip -d ./Data sandp500.zip
+if [ ! -d "./Data" ]
+then
+  printf "\nGetting data from kaggle...\n"
+  kaggle datasets download -d camnugent/sandp500/all_stocks_5yr.csv
+  mkdir ./Data
+  unzip -d ./Data sandp500.zip
+  printf "\nData folder set up\n"
+else
+  printf "\nData is already downloaded, skipping step..."
+fi
+
 
 printf "\n\n---------------- Running Script ----------------\n\n"
 
+python analysis_of_stock_data.py
 
 printf "\n\n---------------- Cleaning up directory ----------------\n\n"
 
-echo "Removing sandp500.zip..."
-rm ./sandp500.zip
+if [ -f ./sandp500.zip ]
+then
+  echo "Removing sandp500.zip..."
+  rm ./sandp500.zip
+fi
+
+while getopts ":r" opt; do
+  case $opt in
+    r)
+      echo "Removing data files..."
+      rm -r ./Data
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+printf "\nCleaning done...\n\n"
