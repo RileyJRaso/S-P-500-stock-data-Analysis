@@ -6,8 +6,9 @@ def get_Data(filepath):
     return(data)
 
 
-def clean_Data():
-    pass
+def clean_Data_only_close(data_uncleaned):
+    cleaned_data = pd.DataFrame(data_uncleaned, columns=['date','close', 'Name'])
+    return(cleaned_data)
 
 
 def sort_Data():
@@ -18,4 +19,6 @@ def display_Data():
     pass
 
 
-stack_data = get_Data(r'./Data/all_stocks_5yr.csv')
+stock_data = get_Data(r'./Data/all_stocks_5yr.csv')
+cleaned_data = clean_Data_only_close(stock_data)
+print(cleaned_data)
