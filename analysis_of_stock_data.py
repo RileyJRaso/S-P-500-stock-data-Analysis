@@ -11,9 +11,9 @@ def clean_Data_only_close(data_uncleaned):
     return(cleaned_data)
 
 
-def sort_Data():
-    pass
-
+def query_Data_for_stock(data_cleaned, stock):
+    data_queried = data_cleaned.loc[data_cleaned.Name == stock,:]
+    return data_queried
 
 def display_Data():
     pass
@@ -21,4 +21,5 @@ def display_Data():
 
 stock_data = get_Data(r'./Data/all_stocks_5yr.csv')
 cleaned_data = clean_Data_only_close(stock_data)
-print(cleaned_data)
+queried_data = query_Data_for_stock(cleaned_data, 'AAL')
+print(queried_data)
