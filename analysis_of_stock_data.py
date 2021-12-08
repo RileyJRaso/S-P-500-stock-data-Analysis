@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 def get_Data(filepath):
     data = pd.read_csv(filepath)
@@ -20,7 +21,9 @@ def Select_years(Stock_data, starting_date, Ending_date):
     Only_wanted_years_data = Stock_data.loc[((Stock_data.date >= starting_date) & (Stock_data.date <= Ending_date)),:]
     return Only_wanted_years_data
 
-def display_Data():
+def display_Data(Stock_data):
+    plt.step(Stock_data['date'], Stock_data['close'])
+    plt.show()
     pass
 
 
@@ -29,3 +32,4 @@ formatted_data = format_Data(stock_data)
 queried_data = query_Data_for_stock(formatted_data, 'AAL')
 Only_wanted_years_queried_data = Select_years(queried_data, '2013-02-12', '2013-03-12')
 print(Only_wanted_years_queried_data)
+display_Data(Only_wanted_years_queried_data)
