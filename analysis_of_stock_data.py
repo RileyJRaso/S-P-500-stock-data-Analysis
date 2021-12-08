@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import re
+
+Date_regex = re.compile('[1-2][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')
 
 def get_Data(filepath):
     data = pd.read_csv(filepath)
@@ -41,9 +44,17 @@ def main():
 
     print("What is the start date for the search? (Format YYYY-MM-DD)")
     start_date = str(input())
+    while(not(Date_regex.match(start_date)) and start_date >= "2013-02-08"):
+        print("it seems the start date entered was in the wrong format or was earlier than dataset, please try again")
+        print("(Format YYYY-MM-DD)")
+        start_date = str(input())
 
     print("What is the end date for the search? (Format YYYY-MM-DD)")
     end_date = str(input())
+    while(not(Date_regex.match(end_date))):
+        print("it seems the end date entered was in the wrong format, please try again")
+        print("(Format YYYY-MM-DD)")
+        start_date = str(input())
 
     Only_wanted_years_queried_data = Select_years(queried_data, start_date, end_date)
 
