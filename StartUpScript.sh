@@ -30,8 +30,11 @@ done < "$input"
 printf "\n\n---------------- Getting Data from kaggle ----------------\n\n"
 
 kaggle datasets download -d camnugent/sandp500/all_stocks_5yr.csv
-mk dir ./Data
+mkdir ./Data
 unzip -d ./Data sandp500.zip
+
+printf "\n\n---------------- Running Script ----------------\n\n"
+
 
 printf "\n\n---------------- Cleaning up directory ----------------\n\n"
 
