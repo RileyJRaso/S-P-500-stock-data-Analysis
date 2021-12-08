@@ -22,7 +22,7 @@ def Select_years(Stock_data, starting_date, Ending_date):
     return Only_wanted_years_data
 
 def display_Data(Stock_data):
-    plt.step(Stock_data['date'], Stock_data['close'])
+    plt.plot(Stock_data['date'], Stock_data['close'])
     plt.show()
     pass
 
