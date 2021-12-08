@@ -12,12 +12,13 @@ def format_Data(data_unformatted):
     return(formatted_data)
 
 
-def query_Data_for_stock(data_cleaned, stock):
-    data_queried = data_cleaned.loc[data_cleaned.Name == stock,:]
+def query_Data_for_stock(data_formatted, stock):
+    data_queried = data_formatted.loc[data_formatted.Name == stock,:]
     return data_queried
 
 def Select_years(Stock_data, starting_date, Ending_date):
-    return Stock_data
+    Only_wanted_years_data = Stock_data.loc[((Stock_data.date >= starting_date) & (Stock_data.date <= Ending_date)),:]
+    return Only_wanted_years_data
 
 def display_Data():
     pass
@@ -25,6 +26,6 @@ def display_Data():
 
 stock_data = get_Data(r'./Data/all_stocks_5yr.csv')
 formatted_data = format_Data(stock_data)
-queried_data = query_Data_for_stock(cleaned_data, 'AAL')
-cleaned_queried_data = Select_years(queried_data, '2013-02-12', '2014-03-12')
-print(cleaned_queried_data.dtypes)
+queried_data = query_Data_for_stock(formatted_data, 'AAL')
+Only_wanted_years_queried_data = Select_years(queried_data, '2013-02-12', '2013-03-12')
+print(Only_wanted_years_queried_data)
