@@ -6,10 +6,10 @@ def get_Data(filepath):
     return(data)
 
 
-def clean_Data(data_uncleaned):
-    data_uncleaned.loc[:,'date'] = pd.to_datetime(data_uncleaned.loc[:,'date'])
-    cleaned_data = pd.DataFrame(data_uncleaned, columns=['date','close', 'Name'])
-    return(cleaned_data)
+def format_Data(data_unformatted):
+    data_unformatted.loc[:,'date'] = pd.to_datetime(data_unformatted.loc[:,'date'])
+    formatted_data = pd.DataFrame(data_unformatted, columns=['date','close', 'Name'])
+    return(formatted_data)
 
 
 def query_Data_for_stock(data_cleaned, stock):
@@ -24,7 +24,7 @@ def display_Data():
 
 
 stock_data = get_Data(r'./Data/all_stocks_5yr.csv')
-cleaned_data = clean_Data_only_close(stock_data)
+formatted_data = format_Data(stock_data)
 queried_data = query_Data_for_stock(cleaned_data, 'AAL')
 cleaned_queried_data = Select_years(queried_data, '2013-02-12', '2014-03-12')
 print(cleaned_queried_data.dtypes)
