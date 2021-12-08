@@ -21,8 +21,11 @@ def Select_years(Stock_data, starting_date, Ending_date):
     Only_wanted_years_data = Stock_data.loc[((Stock_data.date >= starting_date) & (Stock_data.date <= Ending_date)),:]
     return Only_wanted_years_data
 
-def display_Data(Stock_data):
-    plt.plot(Stock_data['date'], Stock_data['close'])
+def display_Data(Stock_data, x_value, y_value, x_label, y_label, Title):
+    plt.plot(Stock_data[x_value], Stock_data[y_value])
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(Title)
     plt.show()
     pass
 
@@ -32,4 +35,4 @@ formatted_data = format_Data(stock_data)
 queried_data = query_Data_for_stock(formatted_data, 'AAL')
 Only_wanted_years_queried_data = Select_years(queried_data, '2013-02-12', '2013-03-12')
 print(Only_wanted_years_queried_data)
-display_Data(Only_wanted_years_queried_data)
+display_Data(Only_wanted_years_queried_data, 'date', 'close', 'Date', 'Closing Price', ("Stock value for: " + 'AAL' + " between " + '2013-02-12' + " And " + '2013-03-12'))
