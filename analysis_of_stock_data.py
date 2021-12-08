@@ -29,10 +29,33 @@ def display_Data(Stock_data, x_value, y_value, x_label, y_label, Title):
     plt.show()
     pass
 
+def main():
 
-stock_data = get_Data(r'./Data/all_stocks_5yr.csv')
-formatted_data = format_Data(stock_data)
-queried_data = query_Data_for_stock(formatted_data, 'AAL')
-Only_wanted_years_queried_data = Select_years(queried_data, '2013-02-12', '2013-03-12')
-print(Only_wanted_years_queried_data)
-display_Data(Only_wanted_years_queried_data, 'date', 'close', 'Date', 'Closing Price', ("Stock value for: " + 'AAL' + " between " + '2013-02-12' + " And " + '2013-03-12'))
+    stock_data = get_Data(r'./Data/all_stocks_5yr.csv')
+    formatted_data = format_Data(stock_data)
+
+    print("What is the symbol of the stock you want to query?")
+    stock_symbol = str(input())
+
+    queried_data = query_Data_for_stock(formatted_data, stock_symbol)
+
+    print("What is the start date for the search? (Format YYYY-MM-DD)")
+    start_date = str(input())
+
+    print("What is the end date for the search? (Format YYYY-MM-DD)")
+    end_date = str(input())
+
+    Only_wanted_years_queried_data = Select_years(queried_data, start_date, end_date)
+
+    print("\nHere is the table for the search\n")
+    print(Only_wanted_years_queried_data)
+
+    display_Data(Only_wanted_years_queried_data, 'date', 'close', 'Date', 'Closing Price', ("Stock value for: " + stock_symbol + " between " + start_date + " And " + end_date))
+
+main()
+#stock_data = get_Data(r'./Data/all_stocks_5yr.csv')
+#formatted_data = format_Data(stock_data)
+#queried_data = query_Data_for_stock(formatted_data, 'AAL')
+#Only_wanted_years_queried_data = Select_years(queried_data, '2013-02-12', '2013-03-12')
+#print(Only_wanted_years_queried_data)
+#display_Data(Only_wanted_years_queried_data, 'date', 'close', 'Date', 'Closing Price', ("Stock value for: " + 'AAL' + " between " + '2013-02-12' + " And " + '2013-03-12'))
