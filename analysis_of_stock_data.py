@@ -44,7 +44,7 @@ def main():
 
     print("What is the start date for the search? (Format YYYY-MM-DD)")
     start_date = str(input())
-    while(not(Date_regex.match(start_date)) and start_date >= "2013-02-08"):
+    while(not(Date_regex.match(start_date))):
         print("it seems the start date entered was in the wrong format or was earlier than dataset, please try again")
         print("(Format YYYY-MM-DD)")
         start_date = str(input())
