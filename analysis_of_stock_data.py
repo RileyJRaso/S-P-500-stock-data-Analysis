@@ -9,6 +9,11 @@ def get_Data(filepath):
     data = pd.read_csv(filepath)
     return(data)
 
+def Clean_Data(Data):
+    #Cleaning data for null values
+    Data.isnull().any()
+
+
 
 def format_Data(data_unformatted):
     data_unformatted.loc[:,'date'] = pd.to_datetime(data_unformatted.loc[:,'date'])
