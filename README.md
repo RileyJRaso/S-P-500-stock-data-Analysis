@@ -1,6 +1,13 @@
 # S-P-500-stock-data-Analysis
 
-a python script for getting data from kaggle and display to user in a readable way through the use of tables and graphs. 
+a python script for getting data from kaggle and display to user in a readable way through the use of tables and graphs. the bash script sets up all the libraries used by the python script, downloads the data from kaggle (if needed, will check for data folder if already downloaded), and if the -r flag is given will remove the data after the analysis is done.
+
+the python script will ask the user for the stock symbol, the date they want to start looking at data for, and the date they want to stop the collection on. it will than read in data from a csv file, and go through the data analysis process of: cleaning the data, manipulating the data, and finally showing the data in a graph to the user
+
+the data set used can be found here: https://www.kaggle.com/camnugent/sandp500
+
+the anaysis tried to answer the following question:
+- how did stock X do from this date, to this date? this anaysis is important is it allows the user to define how long of a timeline they want to look at a stock for, this is beneficial as longer timelines might give the user a better understanding of the trend of the company, is this company gaining value? lossing value? gaining exponentially? or slowing it's growth? and shorter timelines is valueable for high frequency traders and technical analysis to try and prodict if the stock will gain or loss value in the next few days/hours. 
 
 # Installation
 
@@ -51,3 +58,9 @@ if you want to remove the data files from your computer after the analysis run t
 ```
 
 this flag will tell the script to rm all the csv files that are downloaded from kaggle
+
+# Future plans
+
+- add more user input validation so the script doesn't break when someone enters something wrong
+- try and do some more exploratory data analysis to see what stocks tend to rise/fall together
+- try and do some more exploratory data analysis to see what stocks perform opposite to each other for hedging
